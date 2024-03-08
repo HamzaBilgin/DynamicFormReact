@@ -122,6 +122,7 @@ const AddCustomizedFormItem = ({ formStructureList, setFormStructureList }) => {
         newItemRequest={newItemRequest}
         formStructureList={formStructureList}
         setFormStructureList={setFormStructureList}
+        setIsShowError={setIsShowError}
       />
       <ErrorModal
         isShowError={isShowError}

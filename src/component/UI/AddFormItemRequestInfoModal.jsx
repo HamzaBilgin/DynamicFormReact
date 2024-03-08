@@ -1,7 +1,9 @@
 import PropTypes from "prop-types";
-import { useRef } from "react";
+import { useState, useRef } from "react";
 import ReactDom from "react-dom";
 import CloseTimer from "../UI/CloseTimer";
+import ErrorModal from "./ErrorModal";
+
 const AddFormItemRequestInfoModal = ({
   isShowModal,
   setIsShowModal,
@@ -12,6 +14,9 @@ const AddFormItemRequestInfoModal = ({
   if (!isShowModal) {
     return;
   }
+  let errorMessage = "All fields must be filled and free of blank characters.";
+  ("Limit of input you can add to the form: 6 There is an excess at the limit");
+  const [isShowError, setIsShowError] = useState(false);
   let newItemRequestRevize = { type: newItemRequest.type };
   const inputRefs = newItemRequest.options.map(() => useRef());
   const closeMessage =
@@ -32,7 +37,13 @@ const AddFormItemRequestInfoModal = ({
         };
       }
     });
-
+    const isFormValid = Object.values(newItemRequestRevize.options).every(
+      (value) => value.trim() !== ""
+    );
+    if (!isFormValid) {
+      setIsShowError(true);
+      return;
+    }
     setFormStructureList([...formStructureList, newItemRequestRevize]);
     newItemRequestRevize = {};
     setIsShowModal(false);
@@ -92,6 +103,11 @@ const AddFormItemRequestInfoModal = ({
           </div>
         </div>
       </div>
+      <ErrorModal
+        isShowError={isShowError}
+        setIsShowError={setIsShowError}
+        message={errorMessage}
+      />
     </div>,
     document.getElementById("modal")
   );
