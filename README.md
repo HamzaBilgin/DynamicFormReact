@@ -4,6 +4,12 @@ Follow these steps to run it :
 
 ![alt text](public/image.png)
 
+You can add form item by selecting type or you can choose parepared item
+
+![alt text](public/image2.png)
+
+![alt text](public/image3.png)
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
