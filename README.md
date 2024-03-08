@@ -1,3 +1,9 @@
+Follow these steps to run it :
+1 - npm install == To download the necessary documents
+2 - npm start == To start project and then use the link that is in console.
+
+![alt text](public/image.png)
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
