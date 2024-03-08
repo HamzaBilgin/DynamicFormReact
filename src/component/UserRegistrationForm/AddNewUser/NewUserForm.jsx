@@ -54,6 +54,14 @@ const NewUserForm = ({
       return;
     }
     setUserList([userListItemRequest2, ...userList]);
+    inputDefaultRefs.map((item, index) => {
+      item.current.value = "";
+      return item;
+    });
+    inputNewRefs.map((item, index) => {
+      item.current.value = "";
+      return item;
+    });
   }
   return (
     <form className="newUserForm col-span-2  " onSubmit={handleSubmit}>
