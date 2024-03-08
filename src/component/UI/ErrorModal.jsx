@@ -1,12 +1,14 @@
 import PropTypes from "prop-types";
 import ReactDom from "react-dom";
 // import Timer from "../Timer";
-
+import CloseTimer from "../UI/CloseTimer";
 const ErrorModal = (props) => {
   if (!props.isShowError) {
     return;
   }
-
+  const closeMessage =
+    "The modal will shut down after 15 seconds. Remaining Time:";
+  ("After 10 seconds, .Remaining Time:");
   return ReactDom.createPortal(
     <div className="error-modal">
       <div className="flex justify-center items-center h-screen absolute">
@@ -17,13 +19,17 @@ const ErrorModal = (props) => {
               onClick={() => props.setIsShowError(false)}
             ></div>
             <div className="bg-white rounded-md shadow-xl overflow-hidden max-w-md w-full sm:w-96 md:w-1/2 lg:w-2/3 xl:w-1/3 z-50">
-              <div className="bg-indigo-500 text-white px-4 py-2 flex justify-between">
+              <div className="bg-rose-500 text-white px-4 py-2 flex justify-between">
                 <h2 className="text-lg font-semibold">Error Modal</h2>
               </div>
               <div className="p-4 text-black">
                 <p>{props.message}</p>
-                {/* <Timer /> */}
               </div>
+              <CloseTimer
+                closeTime={15}
+                isShow={props.setIsShowError}
+                closeMessage={closeMessage}
+              />
               <div className="border-t px-4 py-2 flex justify-end">
                 <button
                   className="px-3 py-1 bg-indigo-500 text-white  rounded-md w-full sm:w-auto"

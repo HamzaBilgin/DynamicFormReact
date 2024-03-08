@@ -1,26 +1,43 @@
-import React from "react";
-import { useRef } from "react";
 import PropTypes from "prop-types";
+import { useRef } from "react";
 import ReactDom from "react-dom";
-import TextItem from "../UserRegistrationForm/AddNewUser/FormEditableItems/TextItem";
-
+import CloseTimer from "../UI/CloseTimer";
 const AddFormItemRequestInfoModal = ({
   isShowModal,
   setIsShowModal,
   newItemRequest,
+  formStructureList,
+  setFormStructureList,
 }) => {
   if (!isShowModal) {
     return;
   }
+  let newItemRequestRevize = { type: newItemRequest.type };
   const inputRefs = newItemRequest.options.map(() => useRef());
-
-  newItemRequest.options.map((item) => {
-    console.log(item);
-    return item;
-  });
+  const closeMessage =
+    "After 35 seconds, your transactions will be closed without being recorded.Remaining Time:";
   function aa() {
-    inputRefs.map((item) => console.log(item));
+    inputRefs.map((item) => {
+      let name2 = item.current.name;
+      if (name2 === "label") {
+        newItemRequestRevize = {
+          ...newItemRequestRevize,
+          [name2]: item.current.value,
+          options: [],
+        };
+      } else {
+        newItemRequestRevize = {
+          ...newItemRequestRevize,
+          options: [...newItemRequestRevize.options, item.current.value],
+        };
+      }
+    });
+
+    setFormStructureList([...formStructureList, newItemRequestRevize]);
+    newItemRequestRevize = {};
+    setIsShowModal(false);
   }
+
   return ReactDom.createPortal(
     <div className="error-modal">
       <div className="flex justify-center items-center h-screen absolute">
@@ -52,20 +69,11 @@ const AddFormItemRequestInfoModal = ({
                   </div>
                 ))}
               </form>
-              {/* <TextItem /> */}
-              {/* <div className="p-4 text-black flex  justify-start p-2 mb-4 item-center w-full mx-auto rounded-lg ">
-                <label className="block w-1/4 text-sm font-medium leading-6 text-gray-900 text-end pr-4">
-                  Araba :
-                </label>
-                <input
-                  type="text"
-                  placeholder="deneme"
-                  className="w-3/4 pl-3 rounded-md sm:max-w-xs  border border-sky-500"
-                  name="deneme"
-                />
-                
-              </div> */}
-
+              <CloseTimer
+                closeTime={35}
+                isShow={setIsShowModal}
+                closeMessage={closeMessage}
+              />
               <div className="border-t px-4 py-2 flex justify-end">
                 <button
                   className="px-3 py-1 bg-indigo-500 text-white  rounded-md w-full sm:w-auto mr-4"
@@ -92,7 +100,9 @@ const AddFormItemRequestInfoModal = ({
 export default AddFormItemRequestInfoModal;
 
 AddFormItemRequestInfoModal.propTypes = {
-  isShowError: PropTypes.bool,
-  setIsShowError: PropTypes.func,
+  isShowModal: PropTypes.bool,
+  setIsShowModal: PropTypes.func,
   message: PropTypes.string,
+  formStructureList: PropTypes.array,
+  setFormStructureList: PropTypes.func,
 };

@@ -1,8 +1,7 @@
-import React from "react";
-import { useRef } from "react";
+import PropTypes from "prop-types";
+import { useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import ErrorModal from "../../UI/ErrorModal";
-import { useState } from "react";
 const AvailableFormItem = ({ formStructureList, setFormStructureList }) => {
   const birthDateRef = useRef();
   const phoneNumberRef = useRef();
@@ -58,7 +57,7 @@ const AvailableFormItem = ({ formStructureList, setFormStructureList }) => {
     newItemRequest = {};
   }
   return (
-    <div className="bg-emerald-400 h-[200px] p-5 grid grid-rows-3 grid-flow-col gap-4">
+    <div className=" h-[200px] p-5 grid grid-rows-3 grid-flow-col gap-4">
       <h1 className="text-center mb-4 col-span-2">
         You can choose from the previously prepared fields below
       </h1>
@@ -104,3 +103,7 @@ const AvailableFormItem = ({ formStructureList, setFormStructureList }) => {
 };
 
 export default AvailableFormItem;
+AvailableFormItem.propTypes = {
+  formStructureList: PropTypes.array,
+  setFormStructureList: PropTypes.func,
+};

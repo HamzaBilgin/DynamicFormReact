@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-const NewUserFormItem = ({ data }) => {
+const NewUserFormItem = ({ data, getir }) => {
   const { name, placeholder, label, type } = data;
   return (
     <div className="shoppingFormItem flex  justify-start p-2 mb-4 item-center w-full mx-auto rounded-lg ">
@@ -10,8 +10,9 @@ const NewUserFormItem = ({ data }) => {
       <input
         type={type}
         placeholder={placeholder}
-        className="w-3/4 pl-3 rounded-md sm:max-w-xs"
+        className="w-3/4 pl-3 rounded-md sm:max-w-xs border border-sky-500"
         name={name}
+        ref={getir}
       />
     </div>
   );
@@ -21,4 +22,5 @@ export default NewUserFormItem;
 
 NewUserFormItem.propTypes = {
   data: PropTypes.object,
+  getir: PropTypes.object,
 };

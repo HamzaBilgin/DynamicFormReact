@@ -1,6 +1,5 @@
-import React from "react";
-import { useRef } from "react";
-import { useState } from "react";
+import PropTypes from "prop-types";
+import { useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import ErrorModal from "../../UI/ErrorModal";
 import AddFormItemRequestInfoModal from "../../UI/AddFormItemRequestInfoModal";
@@ -36,7 +35,7 @@ const AddCustomizedFormItem = ({ formStructureList, setFormStructureList }) => {
       case "Radio":
         setNewItemRequest({
           ...newDefaultItemRequest,
-          type: "text",
+          type: "radio",
           options: [
             "label",
             "option1",
@@ -52,7 +51,7 @@ const AddCustomizedFormItem = ({ formStructureList, setFormStructureList }) => {
       case "Dropdown":
         setNewItemRequest({
           ...newDefaultItemRequest,
-          type: "text",
+          type: "dropdown",
           options: [
             "label",
             "option1",
@@ -68,16 +67,15 @@ const AddCustomizedFormItem = ({ formStructureList, setFormStructureList }) => {
       case "Textarea":
         setNewItemRequest({
           ...newDefaultItemRequest,
-          type: "text",
+          type: "textarea",
           options: ["label", "rows"],
         });
         setIsShowModal(true);
         break;
     }
   }
-  function handleClickModalInput() {}
   return (
-    <div className="bg-emerald-400 h-[200px] p-5 grid grid-rows-3 grid-flow-col gap-4">
+    <div className=" h-[200px] p-5 grid grid-rows-3 grid-flow-col gap-4">
       <h1 className="text-center mb-4 col-span-2">
         Please select the type you want to add
       </h1>
@@ -122,7 +120,8 @@ const AddCustomizedFormItem = ({ formStructureList, setFormStructureList }) => {
         isShowModal={isShowModal}
         setIsShowModal={setIsShowModal}
         newItemRequest={newItemRequest}
-        message="Tüm alanlar dolu ve boş karakter içermemelidir111."
+        formStructureList={formStructureList}
+        setFormStructureList={setFormStructureList}
       />
       <ErrorModal
         isShowError={isShowError}
@@ -134,3 +133,7 @@ const AddCustomizedFormItem = ({ formStructureList, setFormStructureList }) => {
 };
 
 export default AddCustomizedFormItem;
+AddCustomizedFormItem.propTypes = {
+  formStructureList: PropTypes.array,
+  setFormStructureList: PropTypes.func,
+};
