@@ -35,7 +35,7 @@ const ErrorModal = (props) => {
                   className="px-3 py-1 bg-indigo-500 text-white  rounded-md w-full sm:w-auto"
                   onClick={() => props.setIsShowError(false)}
                 >
-                  Kapat{" "}
+                  Close{" "}
                 </button>
               </div>
             </div>

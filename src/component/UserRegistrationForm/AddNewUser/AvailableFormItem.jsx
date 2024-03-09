@@ -25,7 +25,7 @@ const AvailableFormItem = ({ formStructureList, setFormStructureList }) => {
         newItemRequest = {
           ...newDefaultItemRequest,
           type: "text",
-          label: "Doğum Tarihi",
+          label: "Birth Date",
         };
         break;
       case "PhoneNumber":

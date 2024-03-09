@@ -75,7 +75,7 @@ const AddCustomizedFormItem = ({ formStructureList, setFormStructureList }) => {
     }
   }
   return (
-    <div className=" h-[200px] p-5 grid grid-rows-3 grid-flow-col gap-4">
+    <div className=" h-[200px] px-5 pb-5 grid grid-rows-3 grid-flow-col gap-4">
       <h1 className="text-center mb-4 col-span-2">
         Please select the type you want to add
       </h1>
@@ -86,7 +86,7 @@ const AddCustomizedFormItem = ({ formStructureList, setFormStructureList }) => {
         defaultValue={"Text"}
         ref={textRef}
       >
-        Text1
+        Text
       </button>
       <button
         className="border-2 hover:bg-red-400 hover:text-white rounded-lg"

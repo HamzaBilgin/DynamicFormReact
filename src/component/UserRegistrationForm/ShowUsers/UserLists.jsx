@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import UserListItem from "./UserListItem";
 const UserLists = ({ userList, setUserList }) => {
+  console.log(userList);
   return (
     <>
       {" "}
